@@ -1,7 +1,7 @@
  class Api {
-  constructor(url, token) {
-    this._url = url;
-    this._token = token;
+  constructor(data) {
+    this._url = data.url;
+    this._token = data.token;
   }
 
   _checkStatus= (res) => {
@@ -39,13 +39,13 @@
       },
       body: JSON.stringify({
         name: data.name,
-        about: data.job,
+        about: data.about,
     })
   })
   .then((res) => this._checkStatus(res));
   }
 
-  addNewCard(cardTitle, cardLink) {
+  addNewCard(data) {
     return fetch(`${this._url}/cards`, {
       method: 'POST',
       headers: {
@@ -53,8 +53,8 @@
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        name: cardTitle,
-        link: cardLink
+        name: data.name,
+        link: data.link
       })
     })
     .then((res) => this._checkStatus(res));
@@ -93,7 +93,7 @@ deleteLike(cardId) {
   .then((res) => this._checkStatus(res));
 }
 
-  changeAvatar(avatarLink) {
+  changeAvatar(data) {
     return fetch(`${this._url}/users/me/avatar`, {
       method: 'PATCH',
       headers: {
@@ -101,7 +101,7 @@ deleteLike(cardId) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-      avatar: avatarLink
+      avatar: data.avatar
     })
   })  
   .then((res) => this._checkStatus(res));
@@ -114,4 +114,4 @@ const api = new Api ({
   token: '9994d482-0445-4f51-baf1-565eed9da0d7'
 })
 
-export default api;
+export { api };
