@@ -11,9 +11,7 @@ function DeleteCardPopup(props) {
     onSubmit={props.onSubmit}
     title="Вы уверены?"
     buttonText="Да"
-    >
-
-    </PopupWithForm>
+    />
   )
 }
 

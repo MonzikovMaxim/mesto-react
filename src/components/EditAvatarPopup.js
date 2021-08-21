@@ -10,10 +10,16 @@ function EditAvatarPopup(props) {
     formName="popup-avatar"
     onSubmit={props.onSubmit}
     title="Обновить аватар?"
-    buttonText="Да"
-    
+    buttonText="Да"  
   >
-    <input type="url" id="avatar" className="popup__input popup__avatar-link" name="avatarLink" placeholder="Ссылка" autoComplete="off" required />
+    <input 
+    type="url" 
+    id="avatar" 
+    className="popup__input popup__avatar-link" 
+    name="avatarLink" 
+    placeholder="Ссылка" 
+    autoComplete="off" 
+    required />
     <span className="popup__input-error" id="avatar-error"></span>
 
     </PopupWithForm>

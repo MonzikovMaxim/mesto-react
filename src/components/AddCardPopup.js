@@ -12,11 +12,28 @@ function AddCardPopup(props) {
     title="Новое место"
     buttonText="Сохранить"
     >
-    <input type="text" id="title" minLength="2" maxLength="30" className="popup__input popup__input-title" name="cardTitle" placeholder="Название" autoComplete="off" required />
+    <input 
+    type="text" 
+    id="title" 
+    minLength="2" 
+    maxLength="30" 
+    className="popup__input popup__input-title" 
+    name="cardTitle" 
+    placeholder="Название" 
+    autoComplete="off" 
+    required     
+    />
     <span className="popup__input-error" id="title-error"></span>
-    <input type="url" id="url" className="popup__input popup__input-link" name="cardLink" placeholder="Ссылка" autoComplete="off" required />
+    <input 
+    type="url" 
+    id="url" 
+    className="popup__input popup__input-link" 
+    name="cardLink" 
+    placeholder="Ссылка" 
+    autoComplete="off" 
+    required   
+    />
     <span className="popup__input-error" id="url-error"></span>
-
     </PopupWithForm>
   )
 }

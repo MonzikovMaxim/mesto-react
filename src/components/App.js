@@ -2,7 +2,6 @@ import React from 'react'
 import Header from './Header';
 import Footer from './Footer';
 import Main from './Main';
-import '../index.css';
 import EditProfilePopup from './EditProfilePopup';
 import AddCardPopup from './AddCardPopup';
 import DeleteCardPopup from './DeleteCardPopup';
@@ -14,12 +13,12 @@ function App() {
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false);
   const [isDeleteCardPopupOpen, setDeleteCardPopupOpen] = React.useState(false);
-  const [isImagePopupOpen, setImagePopupOpen] = React.useState(false);
+  const [isImagePopupOpen, setIsImagePopupOpen] = React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState({});
 
   function handleCardClick(card) {
     setSelectedCard({name: card.name, link: card.link})
-    setImagePopupOpen(true);
+    setIsImagePopupOpen(true);
   }
 
   function handleEditAvatarClick() {
@@ -43,7 +42,7 @@ function App() {
     setEditProfilePopupOpen(false)
     setAddPlacePopupOpen(false)
     setDeleteCardPopupOpen(false)
-    setImagePopupOpen(false)
+    setIsImagePopupOpen(false)
     setSelectedCard({});
   }
 
