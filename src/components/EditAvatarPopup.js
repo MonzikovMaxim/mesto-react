@@ -1,14 +1,14 @@
 import React from 'react';
 import PopupWithForm from './PopupWithForm';
 
-function EditAvatarPopup(props) {
+function EditAvatarPopup({isOpen,onClose,onSubmit}) {
   return (
     <PopupWithForm
     name="card-avatar"
-    isOpen={props.isOpen}
-    onClose={props.onClose}
+    isOpen={isOpen}
+    onClose={onClose}
     formName="popup-avatar"
-    onSubmit={props.onSubmit}
+    onSubmit={onSubmit}
     title="Обновить аватар?"
     buttonText="Да"  
   >

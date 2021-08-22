@@ -1,14 +1,14 @@
 import React from 'react';
 import PopupWithForm from './PopupWithForm';
 
-function DeleteCardPopup(props) {
+function DeleteCardPopup({isOpen,onClose,onSubmit}) {
   return (
     <PopupWithForm
     name="card-delete"
-    isOpen={props.isOpen}
-    onClose={props.onClose}
+    isOpen={isOpen}
+    onClose={onClose}
     formName="popup-delete"
-    onSubmit={props.onSubmit}
+    onSubmit={onSubmit}
     title="Вы уверены?"
     buttonText="Да"
     />
