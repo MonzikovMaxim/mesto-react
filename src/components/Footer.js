@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 
 function Footer() {
   return (
-  <footer className="footer container">
-    <p className="footer__text">© 2021 Mesto Russia</p>  
-  </footer>
+    <footer className="footer container">
+      <p className="footer__text">© 2021 Mesto Russia</p>
+    </footer>
   );
 }
 
