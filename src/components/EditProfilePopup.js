@@ -1,14 +1,43 @@
 import React from "react";
 import PopupWithForm from "./PopupWithForm";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
-function EditProfilePopup({ isOpen, onClose, onSubmit }) {
+function EditProfilePopup(props) {
+  const [name, setName] = React.useState('')
+  const [description, setDescription] = React.useState('');
+  const currentUser = React.useContext(CurrentUserContext);
+
+  React.useEffect(() => {
+    setName(currentUser.name);
+    setDescription(currentUser.about);
+  }, [currentUser]);
+
+  function handleNameChange(e) {
+    setName(e.target.value);
+  }
+
+  function handleDescriptionChange(e) {
+    setDescription(e.target.value)
+  }
+
+  function handleSubmit(e) {
+    // Запрещаем браузеру переходить по адресу формы
+    e.preventDefault();
+  
+    // Передаём значения управляемых компонентов во внешний обработчик
+    props.onUpdateUser({
+      name,
+      about: description,
+    });
+  } 
+
   return (
     <PopupWithForm
       name="popup popup_type_profile"
-      isOpen={isOpen}
-      onClose={onClose}
+      isOpen={props.isOpen}
+      onClose={props.onClose}
       formName="popup-edit"
-      onSubmit={onSubmit}
+      onSubmit={handleSubmit}
       title="Редактировать профиль"
       buttonText="Сохранить"
     >
@@ -21,6 +50,7 @@ function EditProfilePopup({ isOpen, onClose, onSubmit }) {
         name="name"
         placeholder="Имя"
         autoComplete="off"
+        onChange={handleNameChange}
         required
       />
       <span className="popup__input-error" id="name-error"></span>
@@ -33,6 +63,7 @@ function EditProfilePopup({ isOpen, onClose, onSubmit }) {
         name="job"
         placeholder="О себе"
         autoComplete="off"
+        onChange={handleDescriptionChange}
         required
       />
 

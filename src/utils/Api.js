@@ -45,7 +45,7 @@
   .then((res) => this._checkStatus(res));
   }
 
-  addNewCard(data) {
+  addNewCard(cardTitle, cardLink) {
     return fetch(`${this._url}/cards`, {
       method: 'POST',
       headers: {
@@ -53,8 +53,8 @@
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        name: data.name,
-        link: data.link
+        name: cardTitle,
+        link: cardLink
       })
     })
     .then((res) => this._checkStatus(res));
@@ -93,6 +93,14 @@ deleteLike(cardId) {
   .then((res) => this._checkStatus(res));
 }
 
+changeLikeCardStatus(cardId, isLiked) {
+  if(isLiked) {
+    return this.setLike(cardId)
+  } else {
+    return this.deleteLike(cardId)
+  }
+}
+
   changeAvatar(data) {
     return fetch(`${this._url}/users/me/avatar`, {
       method: 'PATCH',
@@ -114,4 +122,4 @@ const api = new Api ({
   token: '9994d482-0445-4f51-baf1-565eed9da0d7'
 })
 
-export { api };
+export default api ;
