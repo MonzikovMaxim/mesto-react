@@ -3,7 +3,7 @@ import Card from "./Card";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import {Loader} from "../components/Loader/Loader";
 
-function Main({ cards, onEditAvatar, onEditProfile, onAddPlace, onClickCard, onCardDelete, onCardLike, isLoading }) {
+function Main({ cards, onEditAvatar, onEditProfile, onAddPlace, onClickCard, onDeleteCard, onCardLike, isLoading }) {
   const currentUser = React.useContext(CurrentUserContext);
 
   return isLoading ?
@@ -51,7 +51,7 @@ function Main({ cards, onEditAvatar, onEditProfile, onAddPlace, onClickCard, onC
                 card={card}
                 onClickCard={onClickCard}
                 onCardLike={onCardLike}
-                onCardDelete={onCardDelete}
+                onDeleteCard={onDeleteCard}
               />
             )
           })}

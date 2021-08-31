@@ -49,6 +49,7 @@ function App() {
     api.deleteCard(card._id)
     .then(() => {
       setCards((state) => state.filter((c) => c._id !== card._id));
+      closeAllPopups();
     }) 
     .catch((error) => console.log(error))
   }
@@ -97,7 +98,8 @@ function App() {
     setAddPlacePopupOpen(true);
   }
 
-  function handleDeleteCardPopupClick() {
+  function handleDeleteCardPopupClick(card) {
+    setSelectedCard(card);
     setDeleteCardPopupOpen(true);
   }
 
@@ -122,7 +124,6 @@ function App() {
           onDeleteCard={handleDeleteCardPopupClick}
           onClickCard={handleCardClick}
           onCardLike={handleCardLike}
-          onCardDelete={handleCardDelete}
           isLoading={isLoading}
         />
         <EditProfilePopup
@@ -139,6 +140,7 @@ function App() {
 
 
         <DeleteCardPopup
+          card={selectedCard}
           isOpen={isDeleteCardPopupOpen}
           onDeleteCard={handleCardDelete}
           onClose={closeAllPopups}
