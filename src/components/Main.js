@@ -1,11 +1,14 @@
 import React from "react";
 import Card from "./Card";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
+import {Loader} from "../components/Loader/Loader";
 
-function Main({ cards, onEditAvatar, onEditProfile, onAddPlace, onClickCard, onCardDelete, onCardLike }) {
+function Main({ cards, onEditAvatar, onEditProfile, onAddPlace, onClickCard, onCardDelete, onCardLike, isLoading }) {
   const currentUser = React.useContext(CurrentUserContext);
 
-  return (
+  return isLoading ?
+  <Loader /> :
+   (
     <>
       <section className="profile container">
         <div className="profile__data">

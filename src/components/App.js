@@ -18,15 +18,18 @@ function App() {
   const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState({});
   const [currentUser, setCurrentUser] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
+    setIsLoading(true);
     Promise.all([api.getUserInfo(), api.getInitialCards()])
       .then(([userInfo, cards]) => {
         setCurrentUser(userInfo);
         setCards(cards);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.log(error))
+      .finally(() => setIsLoading(false))
   }, []);
 
    
@@ -47,7 +50,7 @@ function App() {
     .then(() => {
       setCards((state) => state.filter((c) => c._id !== card._id));
     }) 
-    .catch((error) => console.log(error));
+    .catch((error) => console.log(error))
   }
 
   function handleUpdateUser(data) {
@@ -56,7 +59,7 @@ function App() {
       setCurrentUser(userInfo);
       closeAllPopups();
     })
-    .catch((error) => console.log(error));
+    .catch((error) => console.log(error))
   }
 
   function handleUpdateAvatar(data) {
@@ -65,7 +68,7 @@ function App() {
       setCurrentUser(userInfo);
       closeAllPopups();
     })
-    .catch((error) => console.log(error));
+    .catch((error) => console.log(error))
   }
 
   function handleAddPlaceSubmit(data) {
@@ -74,7 +77,7 @@ function App() {
       setCards([newCard, ...cards]);
       closeAllPopups();
     })
-    .catch((error) => console.log(error));
+    .catch((error) => console.log(error))
   }
 
   function handleCardClick(card) {
@@ -120,6 +123,7 @@ function App() {
           onClickCard={handleCardClick}
           onCardLike={handleCardLike}
           onCardDelete={handleCardDelete}
+          isLoading={isLoading}
         />
         <EditProfilePopup
           isOpen={isEditProfilePopupOpen}
@@ -130,7 +134,9 @@ function App() {
         <AddCardPopup 
         isOpen={isAddPlacePopupOpen}
         onAddPlace={handleAddPlaceSubmit}
-        onClose={closeAllPopups} />
+        onClose={closeAllPopups}
+        />
+
 
         <DeleteCardPopup
           isOpen={isDeleteCardPopupOpen}
