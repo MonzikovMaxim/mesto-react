@@ -1,9 +1,9 @@
 import React from "react";
 import PopupWithForm from "./PopupWithForm";
 
-function DeleteCardPopup({card, isOpen, onClose, onDeleteCard }) {
+function DeleteCardPopup({ card, isOpen, onClose, onDeleteCard }) {
   function handleDelete(e) {
-    e.preventDefault()
+    e.preventDefault();
     onDeleteCard(card);
   }
 

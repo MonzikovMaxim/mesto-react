@@ -1,14 +1,23 @@
 import React from "react";
 import Card from "./Card";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
-import {Loader} from "../components/Loader/Loader";
+import { Loader } from "../components/Loader/Loader";
 
-function Main({ cards, onEditAvatar, onEditProfile, onAddPlace, onClickCard, onDeleteCard, onCardLike, isLoading }) {
+function Main({
+  cards,
+  onEditAvatar,
+  onEditProfile,
+  onAddPlace,
+  onClickCard,
+  onDeleteCard,
+  onCardLike,
+  isLoading,
+}) {
   const currentUser = React.useContext(CurrentUserContext);
 
-  return isLoading ?
-  <Loader /> :
-   (
+  return isLoading ? (
+    <Loader />
+  ) : (
     <>
       <section className="profile container">
         <div className="profile__data">
@@ -44,7 +53,7 @@ function Main({ cards, onEditAvatar, onEditProfile, onAddPlace, onClickCard, onD
       </section>
       <section className="cards container">
         <ul className="cards__list">
-          {cards.map(card => {
+          {cards.map((card) => {
             return (
               <Card
                 key={card._id}
@@ -53,7 +62,7 @@ function Main({ cards, onEditAvatar, onEditProfile, onAddPlace, onClickCard, onD
                 onCardLike={onCardLike}
                 onDeleteCard={onDeleteCard}
               />
-            )
+            );
           })}
         </ul>
       </section>

@@ -1,22 +1,22 @@
-import React, {useEffect, useRef} from "react";
+import React, { useEffect, useRef } from "react";
 import PopupWithForm from "./PopupWithForm";
 
 function AddCardPopup({ isOpen, onClose, onAddPlace }) {
-const cardNameRef = useRef();
-const cardLinkRef = useRef();
+  const cardNameRef = useRef();
+  const cardLinkRef = useRef();
 
-function handleSubmit(e) {
-  e.preventDefault();
-  onAddPlace({
-   name: cardNameRef.current.value,
-   link: cardLinkRef.current.value,
-  })
-}
+  function handleSubmit(e) {
+    e.preventDefault();
+    onAddPlace({
+      name: cardNameRef.current.value,
+      link: cardLinkRef.current.value,
+    });
+  }
 
-useEffect(() => {
-  cardNameRef.current.value= '';
-  cardLinkRef.current.value= '';
-}, [isOpen])
+  useEffect(() => {
+    cardNameRef.current.value = "";
+    cardLinkRef.current.value = "";
+  }, [isOpen]);
 
   return (
     <PopupWithForm
@@ -35,7 +35,7 @@ useEffect(() => {
         maxLength="30"
         className="popup__input popup__input-title"
         name="cardTitle"
-        ref={cardNameRef} 
+        ref={cardNameRef}
         placeholder="Название"
         autoComplete="off"
         required
@@ -45,7 +45,7 @@ useEffect(() => {
         type="url"
         id="url"
         className="popup__input popup__input-link"
-        name="cardLink"      
+        name="cardLink"
         ref={cardLinkRef}
         placeholder="Ссылка"
         autoComplete="off"

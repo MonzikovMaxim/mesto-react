@@ -29,56 +29,62 @@ function App() {
         setCards(cards);
       })
       .catch((error) => console.log(error))
-      .finally(() => setIsLoading(false))
+      .finally(() => setIsLoading(false));
   }, []);
 
-   
   function handleCardLike(card) {
     // Снова проверяем, есть ли уже лайк на этой карточке
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    const isLiked = card.likes.some((i) => i._id === currentUser._id);
 
-      // Отправляем запрос в API и получаем обновлённые данные карточки
-      api.changeLikeCardStatus(card._id, !isLiked)
+    // Отправляем запрос в API и получаем обновлённые данные карточки
+    api
+      .changeLikeCardStatus(card._id, !isLiked)
       .then((newCard) => {
-        setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
-    })
+        setCards((state) =>
+          state.map((c) => (c._id === card._id ? newCard : c))
+        );
+      })
       .catch((error) => console.log(error));
-  } 
+  }
 
   function handleCardDelete(card) {
-    api.deleteCard(card._id)
-    .then(() => {
-      setCards((state) => state.filter((c) => c._id !== card._id));
-      closeAllPopups();
-    }) 
-    .catch((error) => console.log(error))
+    api
+      .deleteCard(card._id)
+      .then(() => {
+        setCards((state) => state.filter((c) => c._id !== card._id));
+        closeAllPopups();
+      })
+      .catch((error) => console.log(error));
   }
 
   function handleUpdateUser(data) {
-    api.setUserInfo(data)
-    .then((userInfo) => {
-      setCurrentUser(userInfo);
-      closeAllPopups();
-    })
-    .catch((error) => console.log(error))
+    api
+      .setUserInfo(data)
+      .then((userInfo) => {
+        setCurrentUser(userInfo);
+        closeAllPopups();
+      })
+      .catch((error) => console.log(error));
   }
 
   function handleUpdateAvatar(data) {
-    api.changeAvatar(data)
-    .then((userInfo) => {
-      setCurrentUser(userInfo);
-      closeAllPopups();
-    })
-    .catch((error) => console.log(error))
+    api
+      .changeAvatar(data)
+      .then((userInfo) => {
+        setCurrentUser(userInfo);
+        closeAllPopups();
+      })
+      .catch((error) => console.log(error));
   }
 
   function handleAddPlaceSubmit(data) {
-    api.addNewCard(data.name, data.link)
-    .then((newCard) => {
-      setCards([newCard, ...cards]);
-      closeAllPopups();
-    })
-    .catch((error) => console.log(error))
+    api
+      .addNewCard(data.name, data.link)
+      .then((newCard) => {
+        setCards([newCard, ...cards]);
+        closeAllPopups();
+      })
+      .catch((error) => console.log(error));
   }
 
   function handleCardClick(card) {
@@ -114,7 +120,7 @@ function App() {
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
-    <div className="page">
+      <div className="page">
         <Header />
         <Main
           cards={cards}
@@ -132,12 +138,11 @@ function App() {
           onClose={closeAllPopups}
         />
 
-        <AddCardPopup 
-        isOpen={isAddPlacePopupOpen}
-        onAddPlace={handleAddPlaceSubmit}
-        onClose={closeAllPopups}
+        <AddCardPopup
+          isOpen={isAddPlacePopupOpen}
+          onAddPlace={handleAddPlaceSubmit}
+          onClose={closeAllPopups}
         />
-
 
         <DeleteCardPopup
           card={selectedCard}
@@ -158,7 +163,7 @@ function App() {
           onClose={closeAllPopups}
         />
         <Footer />
-    </div>
+      </div>
     </CurrentUserContext.Provider>
   );
 }

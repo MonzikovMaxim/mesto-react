@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from "react";
+import React, { useEffect, useRef } from "react";
 import PopupWithForm from "./PopupWithForm";
 
 function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
@@ -8,12 +8,12 @@ function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
     e.preventDefault();
     onUpdateAvatar({
       avatar: userAvatar.current.value,
-    })
+    });
   }
 
   useEffect(() => {
     userAvatar.current.value = ""; //очистка инпута при каждом открытии попапа
-  }, [isOpen])
+  }, [isOpen]);
 
   return (
     <PopupWithForm
