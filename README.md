@@ -1,4 +1,4 @@
 # Project Mesto React
 
-Link (https://monzikovmaxim.github.io/mesto-react/).
+Link https://monzikovmaxim.github.io/mesto-react/.
 
